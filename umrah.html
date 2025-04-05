@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>مناسك العمرة - بوابة الحج والعمرة</title>
+  
+  <!-- روابط CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="../css/styles.css">
+
+  <style>
+    :root {
+      --dark-green: rgb(22, 54, 22);
+      --gold: rgb(184, 155, 94);
+      --light-beige: rgb(239, 230, 210);
+      --dark-brown: rgb(92, 64, 51);
+      --cream: rgb(247, 241, 225);
+      --light-gold: rgba(184, 155, 94, 0.1);
+    }
+    
+    body {
+      font-family: 'Amiri', serif;
+      background-color: #f9f9f9;
+      color: var(--dark-brown);
+      scroll-behavior: smooth;
+    }
+    
+    /* زر العودة للأعلى */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      width: 50px;
+      height: 50px;
+      background-color: var(--gold);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      z-index: 99;
+      cursor: pointer;
+      opacity: 0;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    
+    .back-to-top.show {
+      opacity: 1;
+    }
+    
+    .back-to-top:hover {
+      background-color: var(--dark-green);
+      transform: translateY(-3px);
+    }
+    
+    /* تأثيرات التحميل */
+    .loader-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: var(--light-beige);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
+    }
+    
+    .loader {
+      width: 80px;
+      height: 80px;
+      border: 8px solid var(--gold);
+      border-top-color: var(--dark-green);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    .umrah-header {
+      background: linear-gradient(rgba(22, 54, 22, 0.85), rgba(22, 54, 22, 0.85)), 
+                  url('../images/kaaba-wide.jpg');
+      background-size: cover;
+      background-position: center;
+      padding: 120px 0 80px;
+      color: white;
+      text-align: center;
+      position: relative;
+    }
+    
+    .umrah-header h1 {
+      font-family: 'Tajawal', sans-serif;
+      font-weight: 700;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+    }
+    
+    /* بطاقات خطوات العمرة */
+    .step-card {
+      border: none;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      margin-bottom: 20px;
+      background: white;
+      cursor: pointer;
+    }
+    
+    .step-card .card-header {
+      background-color: white;
+      border-bottom: none;
+      padding: 20px;
+      position: relative;
+    }
+    
+    .step-card .card-header h3 {
+      color: var(--dark-green);
+      font-weight: 700;
+      margin: 0;
+      padding-right: 30px;
+    }
+    
+    .step-card .card-header .step-number {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      background-color: var(--gold);
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 30px;
+      margin-left: 10px;
+      font-weight: bold;
+    }
+    
+    .step-card .card-header .toggle-icon {
+      position: absolute;
+      left: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      transition: transform 0.3s ease;
+    }
+    
+    .step-card .card-header.collapsed .toggle-icon {
+      transform: translateY(-50%) rotate(-90deg);
+    }
+    
+    .step-card .card-body {
+      padding: 0 20px 20px;
+      display: none;
+    }
+    
+    .step-card .card-body.show {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    .step-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+    }
+    
+    /* تصميم أنواع العمرة */
+    .umrah-types-section {
+      background-color: var(--light-beige);
+      padding: 60px 0;
+      margin: 60px 0;
+    }
+    
+    .type-card {
+      border: none;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+      transition: all 0.4s ease;
+      height: 100%;
+      background: white;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .type-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(to right, var(--gold), var(--dark-green));
+    }
+    
+    .type-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    }
+    
+    .type-card .card-body {
+      padding: 30px;
+    }
+    
+    .type-card .card-title {
+      color: var(--dark-green);
+      font-weight: 700;
+      margin-bottom: 15px;
+      position: relative;
+      padding-bottom: 10px;
+      font-family: 'Tajawal', sans-serif;
+    }
+    
+    .type-card .card-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--gold);
+    }
+    
+    .type-card .type-badge {
+      background-color: var(--light-gold);
+      color: var(--dark-brown);
+      padding: 5px 15px;
+      border-radius: 50px;
+      font-weight: 600;
+      display: inline-block;
+      margin-bottom: 15px;
+      font-size: 0.9rem;
+    }
+    
+    /* تصميم نصائح العمرة */
+    .tips-section {
+      padding: 60px 0;
+    }
+    
+    .tips-tabs {
+      border: none;
+      margin-bottom: 30px;
+    }
+    
+    .tips-tabs .nav-link {
+      border: none;
+      color: var(--dark-brown);
+      font-weight: 600;
+      padding: 12px 25px;
+      margin: 0 5px;
+      border-radius: 50px;
+      transition: all 0.3s ease;
+      font-family: 'Tajawal', sans-serif;
+    }
+    
+    .tips-tabs .nav-link.active {
+      background-color: var(--gold);
+      color: white;
+    }
+    
+    .tips-tabs .nav-link:hover:not(.active) {
+      background-color: var(--light-gold);
+    }
+    
+    .tip-content {
+      background: white;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    }
+    
+    .tip-item {
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px dashed #eee;
+    }
+    
+    .tip-item:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+    
+    .tip-item h4 {
+      color: var(--dark-green);
+      font-weight: 700;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .tip-item h4 i {
+      color: var(--gold);
+      margin-left: 10px;
+    }
+    
+    /* تأثيرات الحركة */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .section-title {
+      position: relative;
+      padding-bottom: 15px;
+      margin-bottom: 40px;
+      text-align: center;
+      font-family: 'Tajawal', sans-serif;
+      color: var(--dark-green);
+    }
+    
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 50%;
+      transform: translateX(50%);
+      width: 100px;
+      height: 3px;
+      background: linear-gradient(to right, var(--gold), var(--dark-green));
+    }
+    
+    /* القوائم المندلعة */
+    .dropdown-menu {
+      font-family: 'Amiri', serif;
+      border: none;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      border-radius: 8px;
+    }
+    
+    .dropdown-item {
+      padding: 8px 20px;
+      transition: all 0.2s;
+    }
+    
+    .dropdown-item:hover {
+      background-color: var(--light-gold);
+      color: var(--dark-green);
+    }
+    
+    .dropdown-divider {
+      border-color: rgba(184, 155, 94, 0.2);
+    }
+    
+    /* أقسام الأدعية والآيات */
+    .dua-section {
+      background-color: var(--cream);
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px 0;
+      border-right: 4px solid var(--gold);
+    }
+    
+    .dua-title {
+      color: var(--dark-green);
+      font-weight: 700;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .dua-title i {
+      margin-left: 10px;
+      color: var(--gold);
+    }
+    
+    .dua-text {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 10px;
+    }
+    
+    .dua-reference {
+      font-style: italic;
+      color: var(--dark-brown);
+      text-align: left;
+    }
+    
+    /* زر المشاركة */
+    .share-btn {
+      position: fixed;
+      bottom: 100px;
+      left: 30px;
+      width: 50px;
+      height: 50px;
+      background-color: var(--dark-green);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      z-index: 99;
+      cursor: pointer;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+    }
+    
+    .share-btn:hover {
+      background-color: var(--gold);
+      transform: translateY(-3px);
+    }
+    
+    /* شريط التقدم */
+    .progress-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: transparent;
+      z-index: 1000;
+    }
+    
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(to right, var(--gold), var(--dark-green));
+      width: 0%;
+      transition: width 0.1s ease;
+    }
+    
+    /* التعديلات للجوال */
+    @media (max-width: 768px) {
+      .umrah-header {
+        padding: 80px 0 50px;
+      }
+      
+      .umrah-header h1 {
+        font-size: 2rem;
+      }
+      
+      .type-card .card-body {
+        padding: 20px;
+      }
+      
+      .tips-tabs .nav-link {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+      }
+      
+      .back-to-top, .share-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+        bottom: 20px;
+        left: 20px;
+      }
+      
+      .share-btn {
+        bottom: 80px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- شاشة التحميل -->
+  <div class="loader-wrapper" id="loader">
+    <div class="loader"></div>
+  </div>
+
+  <!-- شريط التقدم -->
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <!-- شريط التنقل -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background-color: var(--dark-green);">
+    <div class="container">
+      <a class="navbar-brand" href="../index.html">
+        <img src="../images/kaaba-icon.png" width="40" height="40" class="d-inline-block align-center me-2">
+        بوابة الحج والعمرة
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="../index.html">الرئيسية</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="hajj.html">الحج</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="umrah.html">العمرة</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+              الأدعية والآيات
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#dua-ihram">أدعية الإحرام</a></li>
+              <li><a class="dropdown-item" href="#dua-tawaf">أدعية الطواف</a></li>
+              <li><a class="dropdown-item" href="#dua-sai">أدعية السعي</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="#quran-ayahs">آيات العمرة</a></li>
+              <li><a class="dropdown-item" href="#hadiths">أحاديث العمرة</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">اتصل بنا</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- رأس الصفحة -->
+  <header class="umrah-header">
+    <div class="container">
+      <h1 class="animate__animated animate__fadeInDown">مناسك العمرة</h1>
+      <p class="animate__animated animate__fadeInUp animate__delay-1s">دليلك الشامل لأداء مناسك العمرة بشكل صحيح</p>
+    </div>
+  </header>
+
+  <!-- المحتوى الرئيسي -->
+  <main class="container my-5">
+    <!-- فضائل العمرة -->
+    <section class="umrah-types-section">
+      <div class="container">
+        <h2 class="section-title animate__animated animate__fadeIn">فضائل العمرة</h2>
+        <div class="row">
+          <!-- فضيلة 1 -->
+          <div class="col-md-4 mb-4 animate__animated animate__fadeInLeft">
+            <div class="type-card h-100">
+              <div class="card-body">
+                <span class="type-badge"><i class="fas fa-star me-2"></i>تكفير الذنوب</span>
+                <h3 class="card-title">مكفرة للذنوب</h3>
+                <p>العمرة إلى العمرة كفارة لما بينهما، والحج المبرور ليس له جزاء إلا الجنة</p>
+                <div class="alert alert-info mt-3">
+                  <strong>الحديث:</strong> "العمرة إلى العمرة كفارة لما بينهما، والحج المبرور ليس له جزاء إلا الجنة" (متفق عليه)
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- فضيلة 2 -->
+          <div class="col-md-4 mb-4 animate__animated animate__fadeInUp">
+            <div class="type-card h-100">
+              <div class="card-body">
+                <span class="type-badge"><i class="fas fa-heart me-2"></i>قربة إلى الله</span>
+                <h3 class="card-title">قربة إلى الله</h3>
+                <p>العمرة في رمضان تعدل حجة مع النبي صلى الله عليه وسلم</p>
+                <div class="alert alert-success mt-3">
+                  <strong>الحديث:</strong> "عمرة في رمضان تعدل حجة - أو قال - حجة معي" (متفق عليه)
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- فضيلة 3 -->
+          <div class="col-md-4 mb-4 animate__animated animate__fadeInRight">
+            <div class="type-card h-100">
+              <div class="card-body">
+                <span class="type-badge"><i class="fas fa-hands-praying me-2"></i>دعاء مستجاب</span>
+                <h3 class="card-title">دعاء مستجاب</h3>
+                <p>الحاج والمعتمر وفد الله، دعاهم فأجابوه، وسألوه فأعطاهم</p>
+                <div class="alert alert-info mt-3">
+                  <strong>الحديث:</strong> "الحجاج والعمار وفد الله، دعاهم فأجابوه، وسألوه فأعطاهم" (رواه ابن ماجه)
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- خطوات العمرة -->
+    <section class="my-5">
+      <h2 class="section-title animate__animated animate__fadeIn">خطوات العمرة بالتفصيل</h2>
+      
+      <!-- الخطوة 1 - الإحرام -->
+      <div class="step-card animate__animated animate__fadeInUp">
+        <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#step1">
+          <span class="step-number">1</span>
+          <h3>الإحرام من الميقات</h3>
+          <i class="fas fa-chevron-down toggle-icon"></i>
+        </div>
+        <div id="step1" class="card-body">
+          <div class="row">
+            <div class="col-md-4">
+              <img src="../images/ihram.jpg" class="img-fluid rounded mb-3" alt="الإحرام">
+            </div>
+            <div class="col-md-8">
+              <p>الإحرام هو أول خطوة في العمرة، حيث يدخل المعتمر في حالة من الطهارة والنية. الميقات هو المكان الذي يُحرم منه المعتمر، وهناك خمس أماكن معروفة للمواقيت:</p>
+              <ul>
+                <li>ذو الحليفة (لأهل المدينة)</li>
+                <li>الجحفة (لأهل الشام)</li>
+                <li>قرن المنازل (لأهل نجد)</li>
+                <li>يلملم (لأهل اليمن)</li>
+                <li>ذات عرق (لأهل العراق)</li>
+              </ul>
+              
+              <!-- قسم الأدعية المضافة -->
+              <div class="dua-section" id="dua-ihram">
+                <h4 class="dua-title"><i class="fas fa-hands-praying"></i> أدعية الإحرام</h4>
+                <p class="dua-text">"لبيك اللهم عمرة، لبيك اللهم لبيك، لبيك لا شريك لك لبيك، إن الحمد والنعمة لك والملك، لا شريك لك"</p>
+                <p class="dua-reference">(دعاء الإحرام المشهور)</p>
+                
+                <p class="dua-text">"اللهم إني أريد العمرة فيسره لي وتقبله مني، اللهم اجعلني من عبادك الصالحين"</p>
+                
+                <p class="dua-text">"اللهم هذه عمرة لا رياء فيها ولا سمعة، اللهم تقبلها مني واغفر لي ذنوبي"</p>
+                
+                <p class="dua-text">"اللهم إني أسألك في هذا الميقات أن تغفر لي ذنوبي، وتقبل عمرتي، وتجعلني من عبادك التائبين"</p>
+              </div>
+              
+              <div class="alert alert-light">
+                <strong>النية:</strong> بعد ارتداء ملابس الإحرام، يقوم المعتمر بالتوجه إلى الله بنية أداء العمرة ويقول: "لبيك عمرة".
+              </div>
+              <div class="alert alert-info">
+                <strong>الآية:</strong> "وَأَتِمُّوا الْحَجَّ وَالْعُمْرَةَ لِلَّهِ" (البقرة: 196)
+              </div>
+              
+              <!-- أحاديث الإحرام المضافة -->
+              <div class="dua-section">
+                <h4 class="dua-title"><i class="fas fa-book-hadith"></i> أحاديث الإحرام</h4>
+                <p class="dua-text">قال رسول الله ﷺ: "من أحرم بالعمرة من الميقات، وقام بما يجب عليه، فقد تمت عمرته"</p>
+                <p class="dua-reference">(رواه البخاري)</p>
+                
+                <p class="dua-text">عن ابن عمر رضي الله عنهما قال: "كان رسول الله ﷺ إذا استوت به راحلته قائمة عند مسجد ذي الحليفة أهل فقال: لبيك اللهم لبيك..."</p>
+                <p class="dua-reference">(متفق عليه)</p>
+              </div>
+              
+              <!-- آيات الإحرام المضافة -->
+              <div class="dua-section" id="quran-ayahs">
+                <h4 class="dua-title"><i class="fas fa-quran"></i> آيات الإحرام</h4>
+                <p class="dua-text">"وَأَذِّنْ فِي النَّاسِ بِالْحَجِّ يَأْتُوكَ رِجَالًا وَعَلَى كُلِّ ضَامِرٍ يَأْتِينَ مِنْ كُلِّ فَجٍّ عَمِيقٍ" (الحج: 27)</p>
+                
+                <p class="dua-text">"الْحَجُّ أَشْهُرٌ مَّعْلُومَاتٌ فَمَن فَرَضَ فِيهِنَّ الْحَجَّ فَلَا رَفَثَ وَلَا فُسُوقَ وَلَا جِدَالَ فِي الْحَجِّ" (البقرة: 197)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- الخطوة 2 - الطواف -->
+      <div class="step-card animate__animated animate__fadeInUp animate__delay-1s">
+        <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#step2">
+          <span class="step-number">2</span>
+          <h3>طواف العمرة</h3>
+          <i class="fas fa-chevron-down toggle-icon"></i>
+        </div>
+        <div id="step2" class="card-body">
+          <div class="row">
+            <div class="col-md-4">
+              <img src="../images/tawaf.jpg" class="img-fluid rounded mb-3" alt="الطواف">
+            </div>
+            <div class="col-md-8">
+              <p>بعد الوصول إلى مكة، يؤدي المعتمر طواف العمرة حول الكعبة المشرفة سبعة أشواط.</p>
+              <ul>
+                <li>الطواف يتكون من سبعة أشواط</li>
+                <li>يبدأ الطواف من الحجر الأسود (يُستحب أن يُقبل إذا كان ممكنًا أو الإشارة إليه إذا لم يكن هناك استطاعة)</li>
+                <li>أثناء الطواف، يجب أن يتوجه المعتمر نحو الكعبة ويكثر من الدعاء، والتكبير، والذكر</li>
+                <li>الرمل للرجال في الأشواط الثلاثة الأولى (الإسراع في المشي)</li>
+                <li>اضطباع الرجال (كشف الكتف الأيمن) أثناء الطواف</li>
+              </ul>
+              
+              <!-- قسم أدعية الطواف المضافة -->
+              <div class="dua-section" id="dua-tawaf">
+                <h4 class="dua-title"><i class="fas fa-dua"></i> أدعية الطواف</h4>
+                <p class="dua-text">"سبحان الله، والحمد لله، ولا إله إلا الله، والله أكبر، ولا حول ولا قوة إلا بالله العلي العظيم"</p>
+                
+                <p class="dua-text">"اللهم إني أسألك باسمك العظيم، وبوجهك الكريم، أن تغفر لي ذنوبي، وتقبل طوافي، وتجعلني من عبادك الصالحين"</p>
+                
+                <p class="dua-text">عند الحجر الأسود: "بسم الله، الله أكبر، اللهم إيماناً بك، وتصديقاً بكتابك، ووفاءً بعهدك، واتباعاً لسنة نبيك محمد ﷺ"</p>
+                
+                <p class="dua-text">بين الركن اليماني والحجر الأسود: "ربنا آتنا في الدنيا حسنة وفي الآخرة حسنة وقنا عذاب النار"</p>
+                <p class="dua-reference">(سورة البقرة، الآية 201)</p>
+                
+                <p class="dua-text">"اللهم إني أعوذ بك من الكفر والفقر وعذاب القبر"</p>
+                
+                <p class="dua-text">"اللهم اغفر لي وارحمني واهدني وعافني وارزقني"</p>
+              </div>
+              
+              <div class="alert alert-light">
+                <strong>الحديث:</strong> "مَن طافَ بالبيتِ سبعًا وصلى ركعتينِ كان كفارةً لذنوبه" (رواه الترمذي).
+              </div>
+              
+              <!-- أحاديث الطواف المضافة -->
+              <div class="dua-section">
+                <h4 class="dua-title"><i class="fas fa-book-hadith"></i> أحاديث الطواف</h4>
+                <p class="dua-text">قال رسول الله ﷺ: "الطواف بالبيت صلاة، إلا أن الله أحل فيه الكلام، فمن تكلم فلا يتكلم إلا بخير"</p>
+                <p class="dua-reference">(رواه الترمذي وحسنه)</p>
+                
+                <p class="dua-text">عن ابن عباس رضي الله عنهما قال: قال رسول الله ﷺ: "الحجر الأسود من الجنة، وكان أشد بياضاً من الثلج حتى سودته خطايا بني آدم"</p>
+                <p class="dua-reference">(رواه الترمذي وقال: حسن صحيح)</p>
+              </div>
+              
+              <!-- آيات الطواف المضافة -->
+              <div class="dua-section">
+                <h4 class="dua-title"><i class="fas fa-quran"></i> آيات الطواف</h4>
+                <p class="dua-text">"وَلْيَطَّوَّفُوا بِالْبَيْتِ الْعَتِيقِ" (سورة الحج، الآية 29)</p>
+                
+                <p class="dua-text">"ثُمَّ لْيَقْضُوا تَفَثَهُمْ وَلْيُوفُوا نُذُورَهُمْ وَلْيَطَّوَّفُوا بِالْبَيْتِ الْعَتِيقِ" (سورة الحج، الآية 29)</p>
+                
+                <p class="dua-text">"وَإِذْ بَوَّأْنَا لِإِبْرَاهِيمَ مَكَانَ الْبَيْتِ أَن لَّا تُشْرِكْ بِي شَيْئًا وَطَهِّرْ بَيْتِيَ لِلطَّائِفِينَ وَالْقَائِمِينَ وَالرُّكَّعِ السُّجُودِ" (الحج: 26)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- الخطوة 3 - صلاة الطواف -->
+      <div class="step-card animate__animated animate__fadeInUp animate__delay-2s">
+        <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#step3">
+          <span class="step-number">3</span>
+          <h3>صلاة ركعتي الطواف</h3>
+          <i class="fas fa-chevron-down toggle-icon"></i>
+        </div>
+        <div id="step3" class="card-body">
+          <div class="row">
+            <div class="col-md-4">
+              <img src="../images/prayer.jpg" class="img-fluid rounded mb-3" alt="صلاة الطواف">
+            </div>
+            <div class="col-md-8">
+              <p>بعد الانتهاء من الطواف، يصلي المعتمر ركعتي الطواف خلف مقام إبراهيم أو في أي مكان في المسجد الحرام.</p>
+              <ul>
+                <li>يقرأ في الركعة الأولى بعد الفاتحة سورة الكافرون</li>
+                <li>يقرأ في الركعة الثانية بعد الفاتحة سورة الإخلاص</li>
+                <li>يُستحب الدعاء بعد الصلاة</li>
+                <li>يجب على الرجل أن يغطي كتفه الأيمن بعد انتهاء الطواف</li>
+              </ul>
+              
+              <!-- قسم أدعية صلاة الطواف المضافة -->
+              <div class="dua-section">
+                <h4 class="dua-title"><i class="fas fa-pray"></i> أدعية صلاة الطواف</h4>
+                <p class="dua-text">"اللهم إنك تعلم سري وعلانيتي، فاقبل معذرتي، وتعلم حاجتي، فأعطني سؤلي، وتعلم ما في نفسي فاغفر لي ذنوبي"</p>
+                
+                <p class="dua-text">"اللهم إني أسألك موجبات رحمتك، وعزائم مغفرتك، والغنيمة من كل بر، والسلامة من كل إثم"</p>
+                
+                <p class="dua-text">"اللهم اجعلني في هذه العمرة من المستغفرين، واجعلني من عبادك الشاكرين، وارزقني عمرة مبرورة وسعياً مشكوراً"</p>
+              </div>
+              
+              <div class="alert alert-light">
+                <strong>الآية:</strong> "وَاتَّخِذُوا مِن مَّقَامِ إِبْرَاهِيمَ مُصَلًّى" (البقرة: 125)
+              </div>
+              
+              <!-- أحاديث صلاة الطواف المضافة -->
+              <div class="dua-section">
+                <h4 class="dua-title"><i class="fas fa-book-hadith"></i> أحاديث صلاة الطواف</h4>
+                <p class="dua-text">قال رسول الله ﷺ: "يا بني عبد المطلب، إن الله قد كتب عليكم الطواف بالبيت سبعاً، وصلاتكم خلف المقام ركعتين"</p>
+                <p class="dua-reference">(رواه أبو داود)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- الخطوة 4 - السعي -->
+      <div class="step-card animate__animated animate__fadeInUp animate__delay-3s">
+        <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#step4">
+          <span class="step-number">4</span>
+          <h3>السعي بين الصفا والمروة</h3>
+          <i class="fas fa-chevron-down toggle-icon"></i>
+        </div>
+        <div id="step4" class="card-body">
+          <div class="row">
+            <div class="col-md-4">
+              <img src="../images/saee.jpg" class="img-fluid rounded mb-3" alt="السعي">
+            </div>
+            <div class="col-md-8">
+              <p>بعد صلاة ركعتي الطواف، يجب على المعتمر أداء السعي بين الصفا والمروة. السعي يتكون من سبعة أشواط.</p>
+              <ul>
+                <li>يبدأ السعي من الصفا، حيث يُستحب أن يرفع المعتمر يديه ويتوجه بالدعاء: "اللهم إني أسالك من فضلك"</li>
+                <li>يواصل المعتمر السعي بين الصفا والمروة حتى يصل إلى المروة. وعندما يصل إلى المروة، يُستحب أن يدعو</li>
+                <li>عند العودة من المروة إلى الصفا، يتكرر ذلك حتى يتم السعي سبعة أشواط</li>
+                <li>الهرولة بين العلمين الأخضرين للرجال فقط</li>
+              </ul>
+              
+              <!-- قسم أدعية السعي المضافة -->
+              <div class="dua-section" id="dua-sai">
+                <h4 class="dua-title"><i class="fas fa-pray"></i> أدعية السعي</h4>
+                <p class="dua-text">عند الصعود على الصفا: "إِنَّ الصَّفَا وَالْمَرْوَةَ مِن شَعَائِرِ اللَّهِ فَمَنْ حَجَّ الْبَيْتَ أَوِ اعْتَمَرَ فَلَا جُنَاحَ عَلَيْهِ أَن يَطَّوَّفَ بِهِمَا"</p>
+                <p class="dua-reference">(سورة البقرة، الآية 158)</p>
+                
+                <p class="dua-text">"أبدأ بما بدأ الله به، اللهم ارحم واغفر إنك تعلم سري وعلانيتي، فاقبل معذرتي، وتعلم حاجتي، وتعلم ما في نفسي، اللهم إني أسألك إيماناً يباشر قلبي، ويقيناً صادقاً حتى أعلم أنه لا يصيبني إلا ما كتبت لي"</p>
+                
+                <p class="dua-text">"اللهم اغفر وارحم، واعف عما تعلم، إنك أنت الأعز الأكرم، اللهم آتنا في الدنيا حسنة وفي الآخرة حسنة وقنا عذاب النار"</p>
+                
+                <p class="dua-text">"اللهم إني أسألك في هذا السعي أن تغفر لي ذنوبي، وتقبل سعياي، وتجعلني من عبادك التائبين"</p>
+                
+                <p class="dua-text">"رب اغفر وارحم إنك أنت الأعز الأكرم"</p>
+              </div>
+              
+              <div class="alert alert-light">
+                <strong>الآية:</strong> "إِنَّ الصَّفَا وَالْمَرْوَةَ مِنْ شَعَائِرِ اللَّهِ فَمَن حَجَّ الْبَيْتَ أَوْ اعْتَمَرَ فَلَا جُنَاحَ عَلَيْهِ أَنْ يَطَّوَّفَ بِهِمَا" (سورة البقرة، الآية 158).
+              </div>
+              
+              <!-- أحاديث السعي المضافة -->
+              <div class="dua-section">
+                <h4 class="dua-title"><i class="fas fa-book-hadith"></i> أحاديث السعي</h4>
+                <p class="dua-text">قال رسول الله ﷺ: "اسعوا فإن الله كتب عليكم السعي"</p>
+                <p class="dua-reference">(رواه أحمد)</p>
+                
+                <p class="dua-text">عن جابر بن عبد الله رضي الله عنه في صفة حجة النبي ﷺ: "فبدأ بالصفا فصعد عليه حتى رأى البيت فاستقبل القبلة فوحّد الله وكبّره"</p>
+                <p class="dua-reference">(رواه مسلم)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- الخطوة 5 - الحلق أو التقصير -->
+      <div class="step-card animate__animated animate__fadeInUp animate__delay-4s">
+        <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#step5">
+          <span class="step-number">5</span>
+          <h3>الحلق أو التقصير</h3>
+          <i class="fas fa-chevron-down toggle-icon"></i>
+        </div>
+        <div id="step5" class="card-body">
+          <div class="row">
+            <div class="col-md-4">
+              <img src="../images/haircut.jpg" class="img-fluid rounded mb-3" alt="الحلق أو التقصير">
+            </div>
+            <div class="col-md-8">
+              <p>بعد الانتهاء من السعي، يحلق المعتمر شعره أو يقصره، وهذه هي آخر خطوة في العمرة.</p>
+              <ul>
+                <li>الحلق أفضل من التقصير للرجال</li>
+                <li>التقصير يكون بقص جزء من كل خصلة من الشعر</li>
+                <li>المرأة تقصر من شعرها بقدر أنملة (حوالي سنتيمتر)</li>
+                <li>بعد الحلق أو التقصير، تتحلل المرأة من إحرامها وتبدأ في ارتداء ملابسها العادية</li>
+              </ul>
+              
+              <!-- قسم أدعية الحلق المضافة -->
+              <div class="dua-section">
+                <h4 class="dua-title"><i class="fas fa-cut"></i> أدعية الحلق والتقصير</h4>
+                <p class="dua-text">"اللهم كما أظهرت شعري للتقصير، فأظهر قلبي لطاعتك، واجعلني من عبادك التائبين"</p>
+                
+                <p class="dua-text">"اللهم اغفر لي ذنوبي، وارزقني حجاً مبروراً، وعمرة مقبولة، وسعياً مشكوراً"</p>
+                
+                <p class="dua-text">"اللهم إني أسألك من خير ما سألك منه نبيك محمد ﷺ، وأعوذ بك من شر ما استعاذ منه نبيك محمد ﷺ"</p>
+              </div>
+              
+              <div class="alert alert-light">
+                <strong>الحديث:</strong> "اللهم اغفر للمحلقين. قالوا: والمقصرين يا رسول الله؟ قال: اللهم اغفر للمحلقين. قالوا: والمقصرين يا رسول الله؟ قال: والمقصرين" (متفق عليه).
+              </div>
+              
+              <!-- أحاديث الحلق المضافة -->
+              <div class="dua-section" id="hadiths">
+                <h4 class="dua-title"><i class="fas fa-book-hadith"></i> أحاديث الحلق والتقصير</h4>
+                <p class="dua-text">قال رسول الله ﷺ: "إن الله كتب عليكم السعي بين الصفا والمروة، والحلق أو التقصير"</p>
+                <p class="dua-reference">(رواه مسلم)</p>
+              </div>
+              
+              <!-- آيات الحلق المضافة -->
+              <div class="dua-section">
+                <h4 class="dua-title"><i class="fas fa-quran"></i> آيات الحلق والتقصير</h4>
+                <p class="dua-text">"لَتَدْخُلُنَّ الْمَسْجِدَ الْحَرَامَ إِن شَاءَ اللَّهُ آمِنِينَ مُحَلِّقِينَ رُءُوسَكُمْ وَمُقَصِّرِينَ لَا تَخَافُونَ" (الفتح: 27)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- نصائح لأداء العمرة -->
+    <section class="tips-section">
+      <div class="container">
+        <h2 class="section-title animate__animated animate__fadeIn">نصائح لأداء العمرة</h2>
+        
+        <ul class="nav nav-tabs tips-tabs" id="tipsTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="before-tab" data-bs-toggle="tab" data-bs-target="#before" type="button" role="tab">قبل السفر</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="during-tab" data-bs-toggle="tab" data-bs-target="#during" type="button" role="tab">أثناء العمرة</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="after-tab" data-bs-toggle="tab" data-bs-target="#after" type="button" role="tab">بعد العودة</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="dua-tab" data-bs-toggle="tab" data-bs-target="#dua" type="button" role="tab">أدعية مختارة</button>
+          </li>
+        </ul>
+        
+        <div class="tab-content" id="tipsTabContent">
+          <div class="tab-pane fade show active" id="before" role="tabpanel">
+            <div class="tip-content">
+              <div class="tip-item">
+                <h4><i class="fas fa-heart"></i> النية الصافية</h4>
+                <p>يجب أن تكون نيتك لله تعالى خالصة، وأن تسعى في العمرة لطلب المغفرة والرحمة من الله.</p>
+                <div class="alert alert-light mt-2">
+                  <strong>حديث:</strong> "إنما الأعمال بالنيات" (متفق عليه)
+                </div>
+              </div>
+              
+              <div class="tip-item">
+                <h4><i class="fas fa-graduation-cap"></i> تعلم المناسك</h4>
+                <p>من المهم أن تتعلم مناسك العمرة من علماء موثوقين حتى لا يقع أي خطأ. يمكنك حضور دروس أو مشاهدة فيديوهات تعليمية.</p>
+                <div class="alert alert-light mt-2">
+                  <strong>آية:</strong> "فَاسْأَلُوا أَهْلَ الذِّكْرِ إِن كُنتُمْ لَا تَعْلَمُونَ" (سورة النحل، الآية 43)
+                </div>
+              </div>
+              
+              <div class="tip-item">
+                <h4><i class="fas fa-suitcase"></i> الاستعداد الجسدي والمالي</h4>
+                <p>تأكد من صحتك الجسدية وأنك مستعد للرحلة. كما يجب أن تحرص على تجهيز المال اللازم للسفر والإقامة.</p>
+                <div class="alert alert-light mt-2">
+                  <strong>حديث:</strong> "خذوا زاداً فإن خير الزاد التقوى" (سورة البقرة، الآية 197)
+                </div>
+              </div>
+              
+              <div class="tip-item">
+                <h4><i class="fas fa-book-quran"></i> تحضير الأدعية</h4>
+                <p>قم بتحضير الأدعية التي ترغب في الدعاء بها أثناء العمرة، مثل: "اللهم اجعل هذا السفر سفرًا مباركًا، واجعلني من المقبولين".</p>
+                <div class="dua-section mt-3">
+                  <p class="dua-text">"اللهم إني أسألك في سفري هذا البر والتقوى، ومن العمل ما ترضى"</p>
+                  <p class="dua-text">"اللهم هون علينا سفرنا هذا واطو عنا بعده"</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="tab-pane fade" id="during" role="tabpanel">
+            <div class="tip-content">
+              <div class="tip-item">
+                <h4><i class="fas fa-hands-praying"></i> التفرغ للعبادة</h4>
+                <p>أثناء العمرة، احرص على أن يكون قلبك مع الله طوال الوقت، تجنب أي distractions.</p>
+                <div class="alert alert-light mt-2">
+                  <strong>آية:</strong> "وَاذْكُر رَّبَّكَ فِي نَفْسِكَ تَضَرُّعًا وَخِيفَةً" (سورة الأعراف، الآية 205)
+                </div>
+              </div>
+              
+              <div class="tip-item">
+                <h4><i class="fas fa-comment-dots"></i> الإكثار من الدعاء</h4>
+                <p>اجعل لسانك رطبًا بذكر الله في كل وقت. أكثر من الدعاء والتسبيح والاستغفار.</p>
+                <div class="dua-section mt-3">
+                  <p class="dua-text">"اللهم إني أسألك رضاك والجنة، وأعوذ بك من سخطك والنار"</p>
+                  <p class="dua-text">"ربنا آتنا في الدنيا حسنة وفي الآخرة حسنة وقنا عذاب النار"</p>
+                </div>
+              </div>
+              
+              <div class="tip-item">
+                <h4><i class="fas fa-hand-holding-heart"></i> الصدقة والنية الصافية</h4>
+                <p>تذكر أن العمرة ليست مجرد أداء مناسك، بل هي فرصة للتطهر والقيام بالأعمال الصالحة. حافظ على نيتك الصافية وأفعال الخير.</p>
+                <div class="alert alert-light mt-2">
+                  <strong>حديث:</strong> "الصدقة تطفئ الخطيئة كما يطفئ الماء النار" (رواه الترمذي)
+                </div>
+              </div>
+              
+              <div class="tip-item">
+                <h4><i class="fas fa-person-walking"></i> تحمل المشقة</h4>
+                <p>العمرة قد تكون متعباً، ولكن تحمل ذلك في سبيل الله. تذكر أن كل خطوة تخطوها في المسجد الحرام لها أجر عظيم.</p>
+                <div class="alert alert-light mt-2">
+                  <strong>حديث:</strong> "صلاة في مسجدي هذا أفضل من ألف صلاة فيما سواه إلا المسجد الحرام، وصلاة في المسجد الحرام أفضل من مائة ألف صلاة في هذا" (رواه أحمد)
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="tab-pane fade" id="after" role="tabpanel">
+            <div class="tip-content">
+              <div class="tip-item">
+                <h4><i class="fas fa-pray"></i> الحفاظ على العبادات</h4>
+                <p>يجب أن تلتزم بالصلاة والعبادات بعد العودة. لا تجعل العمرة مجرد رحلة تنتهي بانتهائها.</p>
+                <div class="alert alert-light mt-2">
+                  <strong>آية:</strong> "وَاعْبُدْ رَبَّكَ حَتَّى يَأْتِيَكَ الْيَقِينُ" (سورة الحجر، الآية 99)
+                </div>
+              </div>
+              
+              <div class="tip-item">
+                <h4><i class="fas fa-hands"></i> شكر الله</h4>
+                <p>احرص على شكر الله على قبوله لك في هذا السفر المبارك. أكثر من الحمد والثناء على نعمه.</p>
+                <div class="dua-section mt-3">
+                  <p class="dua-text">"اللهم أعني على ذكرك وشكرك وحسن عبادتك"</p>
+                  <p class="dua-reference">(دعاء مأثور)</p>
+                </div>
+              </div>
+              
+              <div class="tip-item">
+                <h4><i class="fas fa-share-alt"></i> مشاركة الخبرات</h4>
+                <p>تحدث مع الآخرين عن تجربتك، وذكرهم بأهمية العمرة وأجرها. قد تكون سببًا في تشجيع غيرك على أدائها.</p>
+                <div class="alert alert-light mt-2">
+                  <strong>حديث:</strong> "بلغوا عني ولو آية" (رواه البخاري)
+                </div>
+              </div>
+              
+              <div class="tip-item">
+                <h4><i class="fas fa-book"></i> المداومة على الطاعة</h4>
+                <p>اجعل العمرة بداية لمرحلة جديدة من الطاعة والالتزام. لا تكن ممن يعتمرون ثم يعودون إلى المعاصي.</p>
+                <div class="alert alert-light mt-2">
+                  <strong>آية:</strong> "وَأَقِمِ الصَّلَاةَ طَرَفَيِ النَّهَارِ وَزُلَفًا مِّنَ اللَّيْلِ إِنَّ الْحَسَنَاتِ يُذْهِبْنَ السَّيِّئَاتِ" (سورة هود، الآية 114)
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="tab-pane fade" id="dua" role="tabpanel">
+            <div class="tip-content">
+              <div class="dua-section">
+                <h4 class="dua-title"><i class="fas fa-hands-praying"></i> أدعية السفر</h4>
+                <p class="dua-text">"اللهم بك أصول وبك أجول وبك أسير، اللهم إني أسألك من بركة هذا السفر، وتقوى والعمل الصالح"</p>
+                <p class="dua-reference">(دعاء السفر المأثور)</p>
+                
+                <p class="dua-text">"سبحان الذي سخر لنا هذا وما كنا له مقرنين، وإنا إلى ربنا لمنقلبون"</p>
+                <p class="dua-reference">(سورة الزخرف، الآية 13-14)</p>
+              </div>
+              
+              <div class="dua-section">
+                <h4 class="dua-title"><i class="fas fa-kaaba"></i> أدعية زيارة المسجد الحرام</h4>
+                <p class="dua-text">"اللهم أنت السلام ومنك السلام، تباركت يا ذا الجلال والإكرام"</p>
+                <p class="dua-reference">(دعاء دخول المسجد)</p>
+                
+                <p class="dua-text">"اللهم افتح لي أبواب رحمتك، وارزقني زيارة بيتك الحرام، واجعلني من عبادك الصالحين"</p>
+                
+                <p class="dua-text">"اللهم زد هذا البيت تشريفاً وتعظيماً وتكريماً ومهابة، وزد من شرفه وكرمه ممن حجه أو اعتمره تشريفاً وتكريماً وتعظيماً ومهابة وبراً"</p>
+              </div>
+              
+              <div class="dua-section">
+                <h4 class="dua-title"><i class="fas fa-star"></i> أدعية عامة</h4>
+                <p class="dua-text">"ربنا لا تزغ قلوبنا بعد إذ هديتنا وهب لنا من لدنك رحمة إنك أنت الوهاب"</p>
+                <p class="dua-reference">(سورة آل عمران، الآية 8)</p>
+                
+                <p class="dua-text">"اللهم إني أسألك علماً نافعاً، ورزقاً طيباً، وعملاً متقبلاً"</p>
+                <p class="dua-reference">(دعاء مأثور)</p>
+                
+                <p class="dua-text">"اللهم إني أسألك من خير ما سألك منه نبيك محمد ﷺ، وأعوذ بك من شر ما استعاذ منه نبيك محمد ﷺ"</p>
+              </div>
+              
+              <div class="dua-section">
+                <h4 class="dua-title"><i class="fas fa-book-quran"></i> آيات الدعاء</h4>
+                <p class="dua-text">"رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ"</p>
+                <p class="dua-reference">(سورة البقرة، الآية 201)</p>
+                
+                <p class="dua-text">"رَّبِّ أَدْخِلْنِي مُدْخَلَ صِدْقٍ وَأَخْرِجْنِي مُخْرَجَ صِدْقٍ وَاجْعَل لِّي مِن لَّدُنكَ سُلْطَانًا نَّصِيرًا"</p>
+                <p class="dua-reference">(سورة الإسراء، الآية 80)</p>
+                
+                <p class="dua-text">"رَبِّ اجْعَلْنِي مُقِيمَ الصَّلَاةِ وَمِن ذُرِّيَّتِي رَبَّنَا وَتَقَبَّلْ دُعَاءِ"</p>
+                <p class="dua-reference">(سورة إبراهيم، الآية 40)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- قسم الفيديوهات التعليمية -->
+    <section class="videos-section my-5 py-5" style="background-color: var(--light-beige); border-radius: 15px;">
+      <div class="container">
+        <h2 class="section-title animate__animated animate__fadeIn">فيديوهات تعليمية</h2>
+        <div class="row">
+          <div class="col-md-6 mb-4">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body">
+                <div class="ratio ratio-16x9 mb-3">
+                  <iframe src="https://www.youtube.com/embed/VIDEO_ID_1" allowfullscreen></iframe>
+                </div>
+                <h4>شرح مناسك العمرة بالتفصيل</h4>
+                <p>فيديو يشرح خطوات العمرة بطريقة مبسطة مع أدعية كل خطوة</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <div class="card h-100 shadow-sm">
+              <div class="card-body">
+                <div class="ratio ratio-16x9 mb-3">
+                  <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" allowfullscreen></iframe>
+                </div>
+                <h4>أدعية الطواف والسعي</h4>
+                <p>فيديو يتناول أفضل الأدعية أثناء الطواف والسعي بين الصفا والمروة</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- خريطة المواقيت -->
+    <section class="map-section my-5 py-5">
+      <div class="container">
+        <h2 class="section-title animate__animated animate__fadeIn">خريطة المواقيت</h2>
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <div id="map" style="height: 400px; border-radius: 10px;"></div>
+            <div class="mt-3">
+              <h5 class="text-center">مواقيت الإحرام للمعتمرين</h5>
+              <ul class="list-unstyled text-center">
+                <li><i class="fas fa-map-marker-alt text-danger me-2"></i> ذو الحليفة (أهل المدينة)</li>
+                <li><i class="fas fa-map-marker-alt text-primary me-2"></i> الجحفة (أهل الشام)</li>
+                <li><i class="fas fa-map-marker-alt text-success me-2"></i> قرن المنازل (أهل نجد)</li>
+                <li><i class="fas fa-map-marker-alt text-warning me-2"></i> يلملم (أهل اليمن)</li>
+                <li><i class="fas fa-map-marker-alt text-info me-2"></i> ذات عرق (أهل العراق)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- الفوتر -->
+  <footer class="bg-dark text-white py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <h5 class="mb-3">بوابة الحج والعمرة</h5>
+          <p>دليلك الشامل لأداء المناسك بطريقة صحيحة وميسرة وفق الكتاب والسنة</p>
+          <div class="social-icons mt-3">
+            <a href="#" class="text-white me-2"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="text-white me-2"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="text-white me-2"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="text-white"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <h5 class="mb-3">روابط سريعة</h5>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a href="../index.html" class="text-white">الرئيسية</a></li>
+            <li class="mb-2"><a href="hajj.html" class="text-white">مناسك الحج</a></li>
+            <li class="mb-2"><a href="umrah.html" class="text-white">مناسك العمرة</a></li>
+            <li class="mb-2"><a href="#dua" class="text-white">الأدعية المختارة</a></li>
+            <li><a href="contact.html" class="text-white">اتصل بنا</a></li>
+          </ul>
+        </div>
+        <div class="col-md-4 mb-4">
+          <h5 class="mb-3">اشترك في النشرة البريدية</h5>
+          <p>احصل على آخر التحديثات والنصائح حول الحج والعمرة</p>
+          <form class="mt-3">
+            <div class="input-group mb-3">
+              <input type="email" class="form-control" placeholder="بريدك الإلكتروني" aria-label="Email">
+              <button class="btn btn-primary" type="button">اشترك</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <hr class="my-4 bg-secondary">
+      <div class="row">
+        <div class="col-md-6">
+          <p class="mb-0">جميع الحقوق محفوظة &copy; <span id="currentYear"></span> بوابة الحج والعمرة</p>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <p class="mb-0">تصميم وتطوير: <a href="#" class="text-white">فريق البوابة</a></p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- زر العودة للأعلى -->
+  <div class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
+  <!-- زر المشاركة -->
+  <div class="share-btn" id="shareBtn">
+    <i class="fas fa-share-alt"></i>
+  </div>
+
+  <!-- السكربتات -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/script.js"></script>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+  
+  <script>
+    // تحديث سنة حقوق النشر
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+    
+    // تأثيرات التحميل
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        document.getElementById('loader').style.opacity = '0';
+        setTimeout(function() {
+          document.getElementById('loader').style.display = 'none';
+        }, 500);
+      }, 1000);
+    });
+
+    // شريط التقدم
+    window.addEventListener('scroll', function() {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      document.getElementById('progressBar').style.width = scrolled + '%';
+    });
+
+    // زر العودة للأعلى
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', function() {
+      if (window.pageYOffset > 300) {
+        backToTop.classList.add('show');
+      } else {
+        backToTop.classList.remove('show');
+      }
+    });
+    
+    backToTop.addEventListener('click', function() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+
+    // زر المشاركة
+    document.getElementById('shareBtn').addEventListener('click', function() {
+      if (navigator.share) {
+        navigator.share({
+          title: 'مناسك العمرة',
+          text: 'تعرف على مناسك العمرة خطوة بخطوة',
+          url: window.location.href
+        }).catch(err => {
+          console.error('Error sharing:', err);
+        });
+      } else {
+        // Fallback for browsers that don't support Web Share API
+        alert('مشاركة الصفحة غير متاحة في هذا المتصفح. يمكنك نسخ الرابط يدوياً.');
+      }
+    });
+
+    // خريطة المواقيت
+    document.addEventListener('DOMContentLoaded', function() {
+      const map = L.map('map').setView([21.3891, 39.8579], 6);
+      
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
+      
+      // إضافة علامات المواقيت
+      const mawaqit = [
+        {name: 'ذو الحليفة', coords: [24.4333, 39.6167]},
+        {name: 'الجحفة', coords: [22.8025, 39.0658]},
+        {name: 'قرن المنازل', coords: [21.3500, 40.4667]},
+        {name: 'يلملم', coords: [18.3333, 42.7667]},
+        {name: 'ذات عرق', coords: [21.0500, 41.4667]}
+      ];
+      
+      mawaqit.forEach(miqat => {
+        L.marker(miqat.coords).addTo(map)
+          .bindPopup(`<b>${miqat.name}</b><br>ميقات إحرام`);
+      });
+      
+      // تأثيرات الظهور عند التمرير
+      const animateElements = document.querySelectorAll('.animate__animated');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add(entry.target.dataset.animate || 'animate__fadeIn');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      animateElements.forEach(el => observer.observe(el));
+      
+      // تفعيل بطاقات خطوات العمرة
+      const stepCards = document.querySelectorAll('.step-card .card-header');
+      stepCards.forEach(header => {
+        header.addEventListener('click', function() {
+          const icon = this.querySelector('.toggle-icon');
+          const body = document.querySelector(this.getAttribute('data-bs-target'));
+          
+          if (body.classList.contains('show')) {
+            icon.style.transform = 'translateY(-50%) rotate(-90deg)';
+          } else {
+            icon.style.transform = 'translateY(-50%) rotate(0deg)';
+          }
+        });
+      });
+
+      // تنشيط تبويب الأدعية إذا كان هناك هاش في الرابط
+      if(window.location.hash === '#dua') {
+        const duaTab = document.querySelector('#dua-tab');
+        const tab = new bootstrap.Tab(duaTab);
+        tab.show();
+      }
+    });
+
+    // تنعيم التمرير عند النقر على روابط الهاش
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if(targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if(targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 100,
+            behavior: 'smooth'
+          });
+
+          // إذا كان التبويب موجودا، قم بتنشيطه
+          if(targetId === '#dua') {
+            const duaTab = document.querySelector('#dua-tab');
+            const tab = new bootstrap.Tab(duaTab);
+            tab.show();
+          }
+        }
+      });
+    });
+
+    // حفظ التقدم في القراءة
+    window.addEventListener('beforeunload', function() {
+      const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+      localStorage.setItem('umrahPageScrollPosition', scrollPosition);
+    });
+
+    window.addEventListener('load', function() {
+      const savedPosition = localStorage.getItem('umrahPageScrollPosition');
+      if (savedPosition) {
+        window.scrollTo({
+          top: savedPosition,
+          behavior: 'auto'
+        });
+        localStorage.removeItem('umrahPageScrollPosition');
+      }
+    });
+  </script>
+</body>
+</html>

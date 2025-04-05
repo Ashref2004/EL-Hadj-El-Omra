@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="بوابة الحج والعمرة - دليلك الشامل لأداء المناسك بطريقة صحيحة وميسرة">
+  <meta name="keywords" content="الحج, العمرة, مناسك, الكعبة, مكة, المدينة, السعودية, الجزائر">
+  <meta name="author" content="بوابة الحج والعمرة">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  
+  <title>بوابة الحج والعمرة | الرئيسية</title>
+
+  <!-- روابط CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Lateef:wght@400;700&family=Scheherazade+New:wght@400;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css">
+  <style>
+    :root {
+      --dark-green: #0a240a;
+      --gold: #c6a664;
+      --light-beige: #f5f0e4;
+      --dark-brown: #3a2a20;
+      --cream: #fcf8ee;
+      --olive-green: #3c4b23;
+      --gold-light: rgba(198, 166, 100, 0.8);
+      --gold-dark: #a88430;
+      --green-light: rgba(10, 36, 10, 0.95);
+      --green-darker: #051905;
+    }
+    
+    body {
+      font-family: 'Amiri', 'Lateef', 'Scheherazade New', serif;
+      background-color: var(--light-beige);
+      color: var(--dark-brown);
+      line-height: 1.9;
+      overflow-x: hidden;
+      text-align: right;
+    }
+    
+    /* تحسينات شريط التنقل */
+    .navbar {
+      background-color: var(--green-light) !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+      padding: 15px 0;
+      transition: all 0.4s ease;
+      border-bottom: 2px solid var(--gold-light);
+    }
+    
+    .navbar.scrolled {
+      padding: 10px 0;
+      background-color: var(--green-darker) !important;
+      backdrop-filter: blur(8px);
+    }
+    
+    .navbar-brand {
+      color: var(--gold) !important;
+      font-weight: 700;
+      font-size: 1.6rem;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      font-family: 'Lateef', serif;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    }
+    
+    .navbar-brand .logo-container {
+      position: relative;
+      width: 60px;
+      height: 50px;
+      margin-left: 15px;
+    }
+    
+    .navbar-brand .logo-container img {
+      position: absolute;
+      transition: all 0.4s ease;
+      filter: drop-shadow(0 3px 5px rgba(0,0,0,0.4));
+    }
+    
+    .navbar-brand .logo-container img:first-child {
+      width: 50px;
+      height: 50px;
+      z-index: 1;
+    }
+    
+    .navbar-brand .logo-container img:last-child {
+      width: 35px;
+      height: 35px;
+      top: 7px;
+      left: 7px;
+      z-index: 2;
+      border-radius: 3px;
+      border: 1px solid var(--gold);
+    }
+    
+    .navbar-brand:hover .logo-container img:first-child {
+      transform: rotate(-8deg) scale(1.1);
+    }
+    
+    .navbar-brand:hover .logo-container img:last-child {
+      transform: scale(1.2) rotate(8deg);
+    }
+    
+    .nav-link {
+      color: var(--cream) !important;
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin: 0 8px;
+      padding: 10px 20px !important;
+      border-radius: 50px;
+      transition: all 0.4s ease;
+      position: relative;
+      font-family: 'Tajawal', sans-serif;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+    
+    .nav-link::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 20px;
+      width: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      transition: all 0.4s ease;
+    }
+    
+    .nav-link:hover {
+      color: var(--gold) !important;
+      transform: translateY(-3px);
+      text-shadow: 0 0 5px rgba(198, 166, 100, 0.5);
+    }
+    
+    .nav-link:hover::before {
+      width: calc(100% - 40px);
+    }
+    
+    .nav-link.active {
+      background: linear-gradient(135deg, var(--gold-light), rgba(198, 166, 100, 0.5));
+      color: var(--dark-brown) !important;
+      font-weight: 700;
+      box-shadow: 0 4px 15px rgba(198, 166, 100, 0.3);
+    }
+    
+    .nav-link i {
+      margin-left: 10px;
+      font-size: 1em;
+      transition: transform 0.3s ease;
+    }
+    
+    .nav-link:hover i {
+      transform: scale(1.2);
+    }
+    
+    /* قسم البطل المميز */
+    .hero-section {
+      background: linear-gradient(rgba(10, 36, 10, 0.9), rgba(60, 75, 35, 0.9)), 
+                  url('images/kaaba-hero-2.jpg') no-repeat center center;
+      background-size: cover;
+      background-attachment: fixed;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--cream);
+      position: relative;
+      overflow: hidden;
+      padding-top: 80px;
+    }
+    
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      background: url('images/islamic-pattern-2.png') repeat;
+      opacity: 0.1;
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    .hero-section::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 100%;
+      height: 150px;
+      background: linear-gradient(to top, var(--light-beige), transparent);
+      z-index: 2;
+    }
+    
+    .hero-text {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 40px;
+      position: relative;
+      z-index: 3;
+    }
+    
+    .hero-text h1 {
+      font-size: 4.5rem;
+      margin-bottom: 2rem;
+      text-shadow: 3px 5px 15px rgba(0, 0, 0, 0.8);
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      line-height: 1.3;
+      animation: fadeInUp 1s ease both;
+      font-family: 'Lateef', serif;
+      background: linear-gradient(to bottom, var(--gold), #e8d9b5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .hero-text p {
+      font-size: 1.8rem;
+      margin-bottom: 3.5rem;
+      text-shadow: 2px 3px 8px rgba(0, 0, 0, 0.6);
+      opacity: 0.95;
+      animation: fadeInUp 1s 0.3s ease both;
+      font-family: 'Amiri', serif;
+    }
+    
+    .hero-buttons {
+      animation: fadeInUp 1s 0.6s ease both;
+    }
+    
+    .hero-buttons .btn {
+      padding: 18px 48px;
+      font-size: 1.4rem;
+      border-radius: 50px;
+      font-weight: bold;
+      margin: 0 20px;
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+      border: none;
+      position: relative;
+      overflow: hidden;
+      font-family: 'Tajawal', sans-serif;
+      min-width: 250px;
+      z-index: 1;
+    }
+    
+    .hero-buttons .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, rgba(255,255,255,0.15), rgba(255,255,255,0.05));
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      z-index: -1;
+    }
+    
+    .hero-buttons .btn:hover::before {
+      opacity: 1;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+      color: var(--dark-brown);
+    }
+    
+    .btn-primary:hover {
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: 0 15px 35px rgba(184, 155, 94, 0.7);
+    }
+    
+    .btn-outline-light {
+      border: 3px solid var(--cream);
+      color: var(--cream);
+      background: transparent;
+      backdrop-filter: blur(5px);
+    }
+    
+    .btn-outline-light:hover {
+      background: linear-gradient(135deg, rgba(252, 248, 238, 0.2), rgba(252, 248, 238, 0.4));
+      color: var(--cream);
+      border-color: transparent;
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: 0 15px 35px rgba(247, 241, 225, 0.5);
+    }
+    
+    /* إضافة آيات قرآنية مميزة */
+    .quran-verse {
+      font-size: 1.6rem;
+      font-family: 'Scheherazade New', serif;
+      color: var(--gold);
+      margin: 4rem auto;
+      max-width: 900px;
+      padding: 30px;
+      border-radius: 15px;
+      background: rgba(10, 36, 10, 0.5);
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(198, 166, 100, 0.3);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      position: relative;
+      animation: fadeIn 2s ease both;
+      line-height: 2.2;
+    }
+    
+    .quran-verse::before,
+    .quran-verse::after {
+      content: '"';
+      font-size: 4rem;
+      color: var(--gold-light);
+      position: absolute;
+      opacity: 0.3;
+      font-family: 'Amiri', serif;
+    }
+    
+    .quran-verse::before {
+      top: -15px;
+      right: 20px;
+    }
+    
+    .quran-verse::after {
+      bottom: -40px;
+      left: 20px;
+    }
+    
+    .verse-reference {
+      display: block;
+      font-size: 1.3rem;
+      color: var(--cream);
+      margin-top: 20px;
+      font-style: italic;
+      font-family: 'Tajawal', sans-serif;
+    }
+    
+    /* سلايدر الأذكار */
+    .azkar-slider {
+      background: linear-gradient(var(--dark-green), var(--olive-green));
+      padding: 80px 0;
+      margin-top: -1px;
+      border-top: 1px solid var(--gold-light);
+      border-bottom: 1px solid var(--gold-light);
+    }
+    
+    .azkar-slider .swiper {
+      width: 100%;
+      height: 300px;
+      padding: 30px 0;
+    }
+    
+    .azkar-slider .swiper-slide {
+      background: rgba(252, 248, 238, 0.1);
+      border-radius: 20px;
+      padding: 40px;
+      backdrop-filter: blur(5px);
+      border: 1px solid rgba(198, 166, 100, 0.2);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      transition: all 0.4s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+    
+    .azkar-slider .swiper-slide:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+      border-color: rgba(198, 166, 100, 0.4);
+    }
+    
+    .azkar-slider .zekr-text {
+      font-size: 1.8rem;
+      color: var(--gold);
+      font-family: 'Amiri', serif;
+      margin-bottom: 20px;
+      line-height: 2.2;
+    }
+    
+    .azkar-slider .zekr-reference {
+      font-size: 1.2rem;
+      color: var(--cream);
+      font-family: 'Tajawal', sans-serif;
+      opacity: 0.8;
+    }
+    
+    /* قسم المواعيد */
+    .prayer-times {
+      background-color: var(--light-beige);
+      padding: 80px 0;
+      position: relative;
+    }
+    
+    .prayer-times::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      background: url('images/islamic-pattern-light.png') repeat;
+      opacity: 0.05;
+      pointer-events: none;
+    }
+    
+    .prayer-card {
+      background: white;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 10px 30px rgba(70, 50, 40, 0.1);
+      transition: all 0.4s ease;
+      text-align: center;
+      border-bottom: 5px solid var(--gold);
+      margin-bottom: 30px;
+    }
+    
+    .prayer-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(70, 50, 40, 0.15);
+    }
+    
+    .prayer-name {
+      font-size: 1.8rem;
+      color: var(--dark-green);
+      font-family: 'Lateef', serif;
+      margin-bottom: 15px;
+    }
+    
+    .prayer-time {
+      font-size: 2.5rem;
+      color: var(--gold-dark);
+      font-family: 'Tajawal', sans-serif;
+      font-weight: 700;
+    }
+    
+    .prayer-remaining {
+      font-size: 1.1rem;
+      color: var(--olive-green);
+      margin-top: 10px;
+      font-family: 'Tajawal', sans-serif;
+    }
+    
+    .current-prayer {
+      background: linear-gradient(135deg, var(--gold-light), rgba(198, 166, 100, 0.3));
+      border-color: var(--gold-dark);
+    }
+    
+    /* تأثيرات حركية متقدمة */
+    @keyframes fadeInUp {
+      from { 
+        opacity: 0; 
+        transform: translateY(40px); 
+      }
+      to { 
+        opacity: 1; 
+        transform: translateY(0); 
+      }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    /* تأثير العائمة للأيقونات */
+    .floating-icon {
+      animation: float 8s ease-in-out infinite;
+    }
+    
+    /* تعديلات للجوال */
+    @media (max-width: 1400px) {
+      .hero-text h1 {
+        font-size: 4rem;
+      }
+    }
+    
+    @media (max-width: 1200px) {
+      .hero-text h1 {
+        font-size: 3.5rem;
+      }
+      
+      .quran-verse {
+        font-size: 1.5rem;
+        padding: 25px;
+      }
+    }
+    
+    @media (max-width: 992px) {
+      .hero-text h1 {
+        font-size: 3rem;
+      }
+      
+      .hero-text p {
+        font-size: 1.5rem;
+      }
+      
+      .quran-verse {
+        font-size: 1.4rem;
+        line-height: 2;
+      }
+      
+      .azkar-slider .zekr-text {
+        font-size: 1.6rem;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .navbar-brand {
+        font-size: 1.4rem;
+      }
+      
+      .hero-text h1 {
+        font-size: 2.6rem;
+        margin-bottom: 1.5rem;
+      }
+      
+      .hero-text p {
+        font-size: 1.3rem;
+        margin-bottom: 3rem;
+      }
+      
+      .hero-buttons .btn {
+        padding: 16px 36px;
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+        min-width: 220px;
+      }
+      
+      .nav-link {
+        font-size: 1.1rem;
+        padding: 8px 16px !important;
+      }
+      
+      .quran-verse {
+        font-size: 1.3rem;
+        padding: 20px;
+      }
+      
+      .azkar-slider .swiper {
+        height: 350px;
+      }
+      
+      .azkar-slider .swiper-slide {
+        padding: 30px;
+      }
+      
+      .prayer-name {
+        font-size: 1.6rem;
+      }
+      
+      .prayer-time {
+        font-size: 2.2rem;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .hero-text {
+        padding: 0 20px;
+      }
+      
+      .hero-text h1 {
+        font-size: 2.2rem;
+      }
+      
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .hero-buttons .btn {
+        width: 100%;
+        max-width: 280px;
+        margin: 0 0 20px 0;
+      }
+      
+      .navbar-brand {
+        font-size: 1.2rem;
+      }
+      
+      .navbar-brand .logo-container {
+        width: 45px;
+        height: 38px;
+        margin-left: 10px;
+      }
+      
+      .navbar-brand .logo-container img:first-child {
+        width: 38px;
+        height: 38px;
+      }
+      
+      .navbar-brand .logo-container img:last-child {
+        width: 28px;
+        height: 28px;
+        top: 5px;
+        left: 5px;
+      }
+      
+      .quran-verse {
+        font-size: 1.2rem;
+        padding: 15px;
+        margin: 3rem auto;
+      }
+      
+      .azkar-slider .zekr-text {
+        font-size: 1.4rem;
+      }
+    }
+    
+    @media (max-width: 400px) {
+      .hero-text h1 {
+        font-size: 2rem;
+      }
+      
+      .hero-text p {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- شريط التنقل المميز -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top py-2">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <span class="logo-container">
+          <img src="images/kaaba-icon.png" alt="الكعبة المشرفة" class="floating-icon">
+          <img src="images/algeria-flag.png" alt="علم الجزائر">
+        </span>
+        بوابة الحج والعمرة
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="index.html"><i class="fas fa-home"></i> الرئيسية</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="hajj.html"><i class="fas fa-kaaba"></i> الحج</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="umrah.html"><i class="fas fa-mosque"></i> العمرة</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html"><i class="fas fa-envelope"></i> اتصل بنا</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="duas.html"><i class="fas fa-hands-praying"></i> أدعية</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- قسم البطل المميز -->
+  <header class="hero-section">
+    <div class="hero-text container">
+      <h1 class="mb-4 animate__animated animate__fadeInUp">مرحباً بكم في بوابتكم الشاملة للحج والعمرة</h1>
+      <p class="lead mb-5 animate__animated animate__fadeInUp animate__delay-1s">دليلكم المتكامل لأداء المناسك بطريقة صحيحة وميسّرة وفق السنة النبوية</p>
+      
+      <div class="quran-verse animate__animated animate__fadeIn animate__delay-2s">
+        وَأَذِّن فِي النَّاسِ بِالْحَجِّ يَأْتُوكَ رِجَالًا وَعَلَىٰ كُلِّ ضَامِرٍ يَأْتِينَ مِن كُلِّ فَجٍّ عَمِيقٍ
+        <span class="verse-reference">سورة الحج - الآية 27</span>
+      </div>
+      
+      <div class="hero-buttons d-flex flex-wrap justify-content-center animate__animated animate__fadeInUp animate__delay-3s">
+        <a href="hajj.html" class="btn btn-primary btn-lg my-2 me-md-3">
+          <i class="fas fa-kaaba me-2"></i>معلومات الحج
+        </a>
+        <a href="umrah.html" class="btn btn-outline-light btn-lg my-2">
+          <i class="fas fa-mosque me-2"></i>معلومات العمرة
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- سلايدر الأذكار -->
+  <section class="azkar-slider">
+    <div class="container">
+      <h2 class="text-center mb-5" style="color: var(--gold); font-family: 'Lateef', serif; font-size: 2.5rem;">أذكار الحج والعمرة</h2>
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <div class="zekr-text">لبيك اللهم لبيك، لبيك لا شريك لك لبيك، إن الحمد والنعمة لك والملك، لا شريك لك</div>
+            <div class="zekr-reference">دعاء الإحرام</div>
+          </div>
+          <div class="swiper-slide">
+            <div class="zekr-text">ربنا آتنا في الدنيا حسنة وفي الآخرة حسنة وقنا عذاب النار</div>
+            <div class="zekr-reference">سورة البقرة - الآية 201</div>
+          </div>
+          <div class="swiper-slide">
+            <div class="zekr-text">سبحان الله والحمد لله ولا إله إلا الله والله أكبر ولا حول ولا قوة إلا بالله العلي العظيم</div>
+            <div class="zekr-reference">الأذكار العامة</div>
+          </div>
+          <div class="swiper-slide">
+            <div class="zekr-text">اللهم هذا البيت بيتك، والحرم حرمك، والأمن أمنك، وهذا مقام العائذ بك</div>
+            <div class="zekr-reference">دعاء عند الكعبة</div>
+          </div>
+          <div class="swiper-slide">
+            <div class="zekr-text">رب اغفر وارحم وأنت خير الراحمين، اللهم إني أسألك فعل الخيرات، وترك المنكرات، وحب المساكين</div>
+            <div class="zekr-reference">أدعية النبي صلى الله عليه وسلم</div>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- قسم مواعيد الصلاة -->
+  <section class="prayer-times">
+    <div class="container">
+      <h2 class="text-center mb-5" style="color: var(--dark-green); font-family: 'Lateef', serif; font-size: 2.5rem;">مواعيد الصلاة</h2>
+      <div class="row">
+        <div class="col-md-2 col-6">
+          <div class="prayer-card">
+            <div class="prayer-name">الفجر</div>
+            <div class="prayer-time">4:30 ص</div>
+            <div class="prayer-remaining">باقي 5 ساعات</div>
+          </div>
+        </div>
+        <div class="col-md-2 col-6">
+          <div class="prayer-card">
+            <div class="prayer-name">الشروق</div>
+            <div class="prayer-time">6:15 ص</div>
+            <div class="prayer-remaining">باقي 7 ساعات</div>
+          </div>
+        </div>
+        <div class="col-md-2 col-6">
+          <div class="prayer-card current-prayer">
+            <div class="prayer-name">الظهر</div>
+            <div class="prayer-time">12:30 م</div>
+            <div class="prayer-remaining">الوقت الحالي</div>
+          </div>
+        </div>
+        <div class="col-md-2 col-6">
+          <div class="prayer-card">
+            <div class="prayer-name">العصر</div>
+            <div class="prayer-time">3:45 م</div>
+            <div class="prayer-remaining">باقي 3 ساعات</div>
+          </div>
+        </div>
+        <div class="col-md-2 col-6">
+          <div class="prayer-card">
+            <div class="prayer-name">المغرب</div>
+            <div class="prayer-time">6:30 م</div>
+            <div class="prayer-remaining">باقي 6 ساعات</div>
+          </div>
+        </div>
+        <div class="col-md-2 col-6">
+          <div class="prayer-card">
+            <div class="prayer-name">العشاء</div>
+            <div class="prayer-time">8:00 م</div>
+            <div class="prayer-remaining">باقي 7 ساعات</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- سكربتات -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+  <script>
+    // تأثير التمرير لشريط التنقل
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // تأثير اهتزاز للأيقونات
+    document.addEventListener('DOMContentLoaded', function() {
+      const icons = document.querySelectorAll('.nav-link i');
+      
+      icons.forEach(icon => {
+        icon.addEventListener('mouseenter', () => {
+          icon.classList.add('animate__animated', 'animate__swing');
+          setTimeout(() => {
+            icon.classList.remove('animate__animated', 'animate__swing');
+          }, 1000);
+        });
+      });
+      
+      // تأثير العائمة للشعار
+      const kaabaIcon = document.querySelector('.logo-container img:first-child');
+      setInterval(() => {
+        kaabaIcon.classList.add('animate__animated', 'animate__pulse');
+        setTimeout(() => {
+          kaabaIcon.classList.remove('animate__animated', 'animate__pulse');
+        }, 1000);
+      }, 8000);
+    });
+    
+    // تحميل الصفحة بسلاسة
+    window.addEventListener('load', function() {
+      document.body.style.opacity = '1';
+      document.body.style.transition = 'opacity 0.7s ease';
+      
+      // تهيئة سلايدر الأذكار
+      var swiper = new Swiper(".mySwiper", {
+        effect: "coverflow",
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: "auto",
+        coverflowEffect: {
+          rotate: 20,
+          stretch: 0,
+          depth: 200,
+          modifier: 1,
+          slideShadows: true,
+        },
+        loop: true,
+        autoplay: {
+          delay: 5000,
+          disableOnInteraction: false,
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+      });
+    });
+    
+    // تحديث مواعيد الصلاة
+    function updatePrayerTimes() {
+      // هنا يمكنك إضافة كود لجلب مواعيد الصلاة من API
+      const currentPrayer = document.querySelector('.current-prayer');
+      if (currentPrayer) {
+        currentPrayer.classList.remove('current-prayer');
+      }
+      // هذه مجرد مثال، في التطبيق الحقيقي يجب حساب الوقت الفعلي
+      document.querySelectorAll('.prayer-card')[2].classList.add('current-prayer');
+    }
+    
+    // تحديث كل ساعة
+    setInterval(updatePrayerTimes, 3600000);
+  </script>
+</body>
+</html>
